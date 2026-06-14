@@ -24,6 +24,7 @@ export default function Home() {
   const [facilities, setFacilities] = useState([]);
   const [whyUs, setWhyUs] = useState([]);
   const [isLoginDrawerOpen, setIsLoginDrawerOpen] = useState(false);
+  const [loginRole, setLoginRole] = useState("owner");
 
   useEffect(() => {
     // Settings
@@ -106,7 +107,7 @@ export default function Home() {
 
   return (
     <>
-      <Navbar settings={settings} onLoginClick={() => setIsLoginDrawerOpen(true)} />
+      <Navbar settings={settings} onLoginClick={(role) => { setLoginRole(role === 'principal' ? 'owner' : 'teacher'); setIsLoginDrawerOpen(true); }} />
       <Hero settings={settings} />
       <AnnouncementTicker text={settings.announcementTicker} />
       <AboutSection settings={settings} whyUs={whyUs} />
@@ -133,7 +134,7 @@ export default function Home() {
         </a>
       )}
 
-      <LoginDrawer isOpen={isLoginDrawerOpen} onClose={() => setIsLoginDrawerOpen(false)} />
+      <LoginDrawer isOpen={isLoginDrawerOpen} onClose={() => setIsLoginDrawerOpen(false)} defaultTab={loginRole} />
     </>
   );
 }

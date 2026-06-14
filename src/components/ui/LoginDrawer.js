@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -8,13 +8,19 @@ import { X } from "lucide-react";
 import styles from "./LoginDrawer.module.css";
 import { useRouter } from "next/navigation";
 
-export default function LoginDrawer({ isOpen, onClose }) {
-  const [tab, setTab] = useState("owner"); // "owner" or "teacher"
+export default function LoginDrawer({ isOpen, onClose, defaultTab = "owner" }) {
+  const [tab, setTab] = useState(defaultTab); // "owner" or "teacher"
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (isOpen) {
+      setTab(defaultTab);
+    }
+  }, [isOpen, defaultTab]);
 
   const handleEmailLogin = async (e) => {
     e.preventDefault();
