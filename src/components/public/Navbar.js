@@ -27,7 +27,7 @@ export default function Navbar({ settings, onLoginClick }) {
         style={{ top: 0, height: "80px", background: "var(--white)", boxShadow: "var(--shadow-sm)" }}
       >
         <div className={styles.logo}>
-          <div style={{ width: "60px", height: "60px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ width: "75px", height: "75px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </div>
           <div>
@@ -74,7 +74,7 @@ export default function Navbar({ settings, onLoginClick }) {
           <div className={styles.mobileDrawer}>
             <div className={styles.drawerHeader}>
               <div className={styles.logo}>
-                <div style={{ width: "40px", height: "40px", borderRadius: "50%", border: "2px solid var(--gold)", overflow: "hidden", background: "white" }}>
+                <div style={{ width: "55px", height: "55px", borderRadius: "50%", border: "2px solid var(--gold)", overflow: "hidden", background: "white", flexShrink: 0 }}>
                   <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain", transform: "scale(0.9)" }} />
                 </div>
                 <div>

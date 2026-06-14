@@ -77,7 +77,7 @@ export default function AdminLayout({ children, requiredRole }) {
       {/* Sidebar */}
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
         <div className={styles.sidebarHeader} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "20px 16px" }}>
-          <div style={{ width: "36px", height: "36px", flexShrink: 0, background: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", padding: "2px" }}>
+          <div style={{ width: "48px", height: "48px", flexShrink: 0, background: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", padding: "2px" }}>
             <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </div>
           <div>
@@ -119,7 +119,7 @@ export default function AdminLayout({ children, requiredRole }) {
 
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", borderRight: "1px solid #eee", paddingRight: "16px" }} className="no-mobile">
-              <div style={{ width: "32px", height: "32px" }}>
+              <div style={{ width: "42px", height: "42px" }}>
                 <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
               </div>
               <div style={{ lineHeight: 1.1 }}>
