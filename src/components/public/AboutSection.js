@@ -16,19 +16,20 @@ export default function AboutSection({ settings }) {
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "60px", alignItems: "center" }}>
         
         {/* Left: Image Composition */}
-        <div style={{ position: "relative", paddingRight: "20px" }} className="animateFadeUp delay1">
-          <div style={{ position: "absolute", top: "-20px", left: "-20px", width: "100%", height: "100%", background: "var(--gold)", borderRadius: "var(--radius-lg)", zIndex: 0, opacity: 0.1 }} />
-          <img 
-            src="/poster.jpg" 
-            alt="Students Learning" 
-            style={{ width: "100%", height: "auto", maxHeight: "600px", objectFit: "contain", borderRadius: "var(--radius-lg)", position: "relative", zIndex: 1, boxShadow: "var(--shadow-lg)", background: "var(--light-bg)" }} 
-          />
-        </div>
-        
-        {/* Experience Card Moved Below Image */}
-        <div style={{ marginTop: "20px", background: "var(--white)", padding: "24px", borderRadius: "16px", boxShadow: "var(--shadow-sm)", display: "flex", alignItems: "center", gap: "16px", width: "fit-content" }}>
-          <div style={{ fontSize: "42px", fontWeight: 800, color: "var(--royal-blue)", lineHeight: 1 }}>15+</div>
-          <div style={{ fontSize: "14px", fontWeight: 700, color: "var(--text-muted)", lineHeight: 1.3, textTransform: "uppercase" }}>Years of<br/>Excellence</div>
+        <div style={{ position: "relative", paddingRight: "20px", display: "flex", flexDirection: "column" }} className="animateFadeUp delay1">
+          {/* Experience Card Moved Above Image */}
+          <div style={{ marginBottom: "20px", background: "var(--white)", padding: "16px 24px", borderRadius: "16px", boxShadow: "var(--shadow-md)", display: "flex", alignItems: "center", gap: "20px", alignSelf: "flex-start", zIndex: 2, border: "1px solid rgba(0,0,0,0.05)" }}>
+            <div style={{ fontSize: "40px", fontWeight: 800, color: "var(--royal-blue)", lineHeight: 1 }}>15+</div>
+            <div style={{ fontSize: "14px", fontWeight: 700, color: "var(--text-muted)", lineHeight: 1.3, textTransform: "uppercase" }}>Years of<br/>Excellence</div>
+          </div>
+          <div style={{ position: "relative" }}>
+            <div style={{ position: "absolute", top: "-20px", left: "-20px", width: "100%", height: "100%", background: "var(--gold)", borderRadius: "var(--radius-lg)", zIndex: 0, opacity: 0.1 }} />
+            <img 
+              src="/poster.jpg" 
+              alt="Students Learning" 
+              style={{ width: "100%", height: "auto", maxHeight: "600px", objectFit: "contain", borderRadius: "var(--radius-lg)", position: "relative", zIndex: 1, boxShadow: "var(--shadow-lg)", background: "var(--light-bg)" }} 
+            />
+          </div>
         </div>
 
         {/* Right: Typography & Features */}

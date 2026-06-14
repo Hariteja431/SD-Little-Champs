@@ -23,15 +23,15 @@ export default function Navbar({ settings, onLoginClick }) {
     <>
       {/* Navbar Overlay */}
       <nav 
-        className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : styles.navbarTransparent}`}
-        style={{ top: 0, height: "80px" }}
+        className={`${styles.navbar} ${styles.navbarScrolled}`}
+        style={{ top: 0, height: "80px", background: "var(--white)", boxShadow: "var(--shadow-sm)" }}
       >
         <div className={styles.logo}>
           <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "0.5px solid var(--gold)", overflow: "hidden", background: "white", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.15)" }} />
           </div>
           <div>
-            <h1 className="font-heading" style={{ fontSize: "24px", fontWeight: 800, letterSpacing: "0.5px", color: scrolled ? "var(--navy)" : "white", lineHeight: 1.1, transition: "color 0.3s" }}>
+            <h1 className="font-heading" style={{ fontSize: "24px", fontWeight: 800, letterSpacing: "0.5px", color: "var(--navy)", lineHeight: 1.1 }}>
               SD Little Champ's<br/>
               <span style={{ fontSize: "16px", fontWeight: 600 }}>E.M School</span>
             </h1>
@@ -40,15 +40,15 @@ export default function Navbar({ settings, onLoginClick }) {
 
         {/* Desktop Links & Actions */}
         <div className={`${styles.navLinks} no-mobile`} style={{ alignItems: "center" }}>
-          <a href="#home" className={`${styles.navLink} ${scrolled ? styles.navLinkDark : styles.navLinkLight}`}>Home</a>
-          <a href="#about" className={`${styles.navLink} ${scrolled ? styles.navLinkDark : styles.navLinkLight}`}>About</a>
-          <a href="#achievements" className={`${styles.navLink} ${scrolled ? styles.navLinkDark : styles.navLinkLight}`}>Achievements</a>
-          <a href="#facilities" className={`${styles.navLink} ${scrolled ? styles.navLinkDark : styles.navLinkLight}`}>Facilities</a>
-          <a href="#gallery" className={`${styles.navLink} ${scrolled ? styles.navLinkDark : styles.navLinkLight}`}>Gallery</a>
-          <a href="#contact" className={`${styles.navLink} ${scrolled ? styles.navLinkDark : styles.navLinkLight}`}>Contact</a>
+          <a href="#home" className={`${styles.navLink} ${styles.navLinkDark}`}>Home</a>
+          <a href="#about" className={`${styles.navLink} ${styles.navLinkDark}`}>About</a>
+          <a href="#achievements" className={`${styles.navLink} ${styles.navLinkDark}`}>Achievements</a>
+          <a href="#facilities" className={`${styles.navLink} ${styles.navLinkDark}`}>Facilities</a>
+          <a href="#gallery" className={`${styles.navLink} ${styles.navLinkDark}`}>Gallery</a>
+          <a href="#contact" className={`${styles.navLink} ${styles.navLinkDark}`}>Contact</a>
           
-          <div style={{ display: "flex", gap: "12px", marginLeft: "16px", paddingLeft: "16px", borderLeft: scrolled ? "1px solid rgba(0,0,0,0.1)" : "1px solid rgba(255,255,255,0.2)" }}>
-            <button onClick={handleTeacherLogin} style={{ display: "flex", alignItems: "center", gap: "6px", background: "transparent", border: scrolled ? "1px solid var(--navy)" : "1px solid rgba(255,255,255,0.5)", color: scrolled ? "var(--navy)" : "var(--white)", padding: "8px 16px", borderRadius: "20px", cursor: "pointer", fontWeight: 600, transition: "all 0.2s" }} onMouseOver={e=>{e.currentTarget.style.background="var(--navy)"; e.currentTarget.style.color="var(--white)";}} onMouseOut={e=>{e.currentTarget.style.background="transparent"; e.currentTarget.style.color=scrolled?"var(--navy)":"var(--white)";}}>
+          <div style={{ display: "flex", gap: "12px", marginLeft: "16px", paddingLeft: "16px", borderLeft: "1px solid rgba(0,0,0,0.1)" }}>
+            <button onClick={handleTeacherLogin} style={{ display: "flex", alignItems: "center", gap: "6px", background: "transparent", border: "1px solid var(--navy)", color: "var(--navy)", padding: "8px 16px", borderRadius: "20px", cursor: "pointer", fontWeight: 600, transition: "all 0.2s" }} onMouseOver={e=>{e.currentTarget.style.background="var(--navy)"; e.currentTarget.style.color="var(--white)";}} onMouseOut={e=>{e.currentTarget.style.background="transparent"; e.currentTarget.style.color="var(--navy)";}}>
               <UserCircle size={16} /> Teachers
             </button>
             <button onClick={handlePrincipalLogin} style={{ display: "flex", alignItems: "center", gap: "6px", background: "var(--gold)", border: "1px solid var(--gold)", color: "var(--navy)", padding: "8px 16px", borderRadius: "20px", cursor: "pointer", fontWeight: 700, transition: "transform 0.2s" }} onMouseOver={e=>e.currentTarget.style.transform="translateY(-2px)"} onMouseOut={e=>e.currentTarget.style.transform="translateY(0)"}>
@@ -61,7 +61,7 @@ export default function Navbar({ settings, onLoginClick }) {
         <button 
           className={`mobile-only ${styles.mobileMenuBtn}`}
           onClick={() => setMobileMenuOpen(true)}
-          style={{ background: "transparent", border: "none", cursor: "pointer", color: scrolled ? "var(--navy)" : "white" }}
+          style={{ background: "transparent", border: "none", cursor: "pointer", color: "var(--navy)" }}
         >
           <Menu size={28} />
         </button>
