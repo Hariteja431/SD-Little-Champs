@@ -21,25 +21,23 @@ export default function NoticesSection({ notices }) {
         </p>
       </div>
 
-      <div className={styles.marqueeContainer} style={{ position: "relative" }}>
-        {/* Fading Edges */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "100px", height: "100%", background: "linear-gradient(to right, var(--light-bg), transparent)", zIndex: 2 }} />
-        <div style={{ position: "absolute", top: 0, right: 0, width: "100px", height: "100%", background: "linear-gradient(to left, var(--light-bg), transparent)", zIndex: 2 }} />
-        
-        <div className={styles.marqueeTrack} style={{ display: "flex", alignItems: "center", padding: "20px 0" }}>
-          {[...displayNotices, ...displayNotices, ...displayNotices, ...displayNotices].map((notice, i) => (
-            <div key={`${notice.id}-${i}`} className="premiumCard" style={{ minWidth: "350px", maxWidth: "350px", padding: "20px", display: "flex", gap: "16px", margin: "0 15px", flexShrink: 0 }}>
-              <div style={{ width: "40px", height: "40px", background: "rgba(30, 58, 138, 0.05)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--royal-blue)", flexShrink: 0 }}>
-                <Bell size={20} />
-              </div>
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "1px" }}>{notice.type}</span>
-                  <span style={{ fontSize: "11px", color: "var(--text-muted)", fontWeight: 600 }}>{new Date(notice.date).toLocaleDateString()}</span>
+      <div style={{ maxWidth: "1400px", margin: "40px auto 0", padding: "0 5%" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "24px" }}>
+          {displayNotices.slice(0, 6).map((notice, i) => (
+            <div key={`${notice.id}-${i}`} className={styles.premiumCard} style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "16px", height: "100%", background: "var(--white)", borderRadius: "16px", border: "1px solid rgba(0,0,0,0.03)", transition: "transform 0.3s, box-shadow 0.3s", cursor: "pointer" }} onMouseOver={e => { e.currentTarget.style.transform = "translateY(-5px)"; e.currentTarget.style.boxShadow = "0 15px 40px rgba(0,0,0,0.08)"; }} onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "var(--shadow-md)"; }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                <div style={{ width: "48px", height: "48px", background: "rgba(30, 58, 138, 0.05)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--navy)", flexShrink: 0 }}>
+                  <Bell size={24} />
                 </div>
-                <h5 style={{ fontSize: "15px", color: "var(--navy)", fontWeight: 700, marginBottom: "8px", lineHeight: 1.3 }}>{notice.title}</h5>
-                <p style={{ fontSize: "13px", color: "var(--text-muted)", lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{notice.body}</p>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
+                    <span style={{ fontSize: "12px", fontWeight: 800, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "1px" }}>{notice.type || "Update"}</span>
+                    <span style={{ fontSize: "12px", color: "var(--text-muted)", fontWeight: 600 }}>{new Date(notice.date).toLocaleDateString()}</span>
+                  </div>
+                  <h5 style={{ fontSize: "18px", color: "var(--navy)", fontWeight: 800, lineHeight: 1.3 }}>{notice.title}</h5>
+                </div>
               </div>
+              <p style={{ fontSize: "14px", color: "var(--text-muted)", lineHeight: 1.6, marginTop: "4px" }}>{notice.body}</p>
             </div>
           ))}
         </div>
