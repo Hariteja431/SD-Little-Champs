@@ -927,7 +927,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-position: 85% 30%;
+    background-position: right center; /* Show the right half of the image */
     background-size: cover; /* Fill the mobile screen */
   }
   .heroPremiumGradient {
