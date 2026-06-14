@@ -1,0 +1,135 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 27, 75, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background: var(--white);
+  box-shadow: -4px 0 32px rgba(13, 27, 75, 0.1);
+  z-index: 1001;
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 24px;
+}
+
+.drawer.open {
+  right: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.closeBtn:hover {
+  color: var(--navy);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.header h2 {
+  font-size: 28px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.tabs {
+  display: flex;
+  background: var(--bg);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 24px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitBtn {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.error {
+  background: #fee2e2;
+  color: var(--red);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.googleAuth {
+  margin-top: 24px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.divider span {
+  padding: 0 12px;
+}
+
+.googleBtn {
+  width: 100%;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.googleBtn:hover {
+  background: var(--bg);
+}
