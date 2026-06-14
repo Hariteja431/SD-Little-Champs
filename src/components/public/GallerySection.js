@@ -38,7 +38,7 @@ export default function GallerySection({ gallery }) {
         </p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "24px", padding: "0 20px" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", padding: "0 5%" }}>
         {activeGallery.map((item, index) => (
           <div 
             key={item.id} 
@@ -46,31 +46,34 @@ export default function GallerySection({ gallery }) {
             style={{ 
               position: "relative", 
               overflow: "hidden", 
-              borderRadius: "16px", 
-              aspectRatio: "4/3",
-              boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
+              borderRadius: "16px",
+              flexGrow: 1,
+              flexBasis: "300px",
+              height: "280px",
+              boxShadow: "var(--shadow-md)",
               cursor: "pointer",
-              group: "true"
             }}
-            className="gallery-item"
           >
             <img 
               src={item.url} 
               alt={item.caption} 
-              style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} 
+              style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} 
               onMouseOver={e => e.currentTarget.style.transform = "scale(1.08)"}
               onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}
             />
             <div style={{
               position: "absolute", inset: 0, 
-              background: "rgba(11, 30, 91, 0.4)", 
-              display: "flex", alignItems: "center", justifyContent: "center",
-              opacity: 0, transition: "opacity 0.3s ease"
+              background: "linear-gradient(to top, rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.2))", 
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+              opacity: 0, transition: "opacity 0.4s ease"
             }}
-            onMouseOver={e => e.currentTarget.style.opacity = 1}
-            onMouseOut={e => e.currentTarget.style.opacity = 0}
+            onMouseOver={e => { e.currentTarget.style.opacity = 1; e.currentTarget.previousSibling.style.transform = "scale(1.08)"; }}
+            onMouseOut={e => { e.currentTarget.style.opacity = 0; e.currentTarget.previousSibling.style.transform = "scale(1)"; }}
             >
-              <Maximize2 color="white" size={40} />
+              <div style={{ transform: "translateY(20px)", transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <Maximize2 color="var(--gold)" size={40} style={{ marginBottom: "12px" }} />
+                <span style={{ color: "white", fontSize: "16px", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase" }}>View Image</span>
+              </div>
             </div>
           </div>
         ))}

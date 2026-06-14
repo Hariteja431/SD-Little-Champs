@@ -37,13 +37,13 @@ body {
   flex-direction: column;
   color: var(--text);
   background: var(--bg);
-  font-family: var(--font-hind), sans-serif;
+  font-family: var(--font-plus-jakarta), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: var(--font-baloo-2), cursive;
+  font-family: var(--font-outfit), sans-serif;
 }
 
 * {
@@ -79,7 +79,7 @@ button {
   border-radius: var(--radius-btn);
   font-weight: 600;
   transition: all 0.2s ease;
-  font-family: var(--font-hind), sans-serif;
+  font-family: var(--font-plus-jakarta), sans-serif;
   gap: 8px;
 }
 
