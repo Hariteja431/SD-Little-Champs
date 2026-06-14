@@ -31,10 +31,10 @@ export default function Navbar({ settings, onLoginClick }) {
             <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </div>
           <div>
-            <h1 className="font-heading" style={{ fontSize: "24px", fontWeight: 800, letterSpacing: "0.5px", color: "var(--navy)", lineHeight: 1.1 }}>
+            <div className="font-heading" style={{ fontSize: "24px", fontWeight: 800, letterSpacing: "0.5px", color: "var(--navy)", lineHeight: 1.1 }}>
               SD Little Champ's<br/>
               <span style={{ fontSize: "16px", fontWeight: 600 }}>E.M School</span>
-            </h1>
+            </div>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ export default function Navbar({ settings, onLoginClick }) {
                   <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain", transform: "scale(0.9)", borderRadius: "50%" }} />
                 </div>
                 <div>
-                  <h1 className="font-heading" style={{ fontSize: "16px", color: "var(--navy)", lineHeight: 1.2 }}>SD Little Champ's</h1>
+                  <div className="font-heading" style={{ fontSize: "16px", color: "var(--navy)", lineHeight: 1.2 }}>SD Little Champ's</div>
                 </div>
               </div>
               <button className={styles.drawerClose} onClick={() => setMobileMenuOpen(false)}>
