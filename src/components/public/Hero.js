@@ -19,7 +19,7 @@ export default function Hero({ settings }) {
           </div>
           
           {/* Main Heading */}
-          <h1 className="font-heading animateFadeUp delay2" style={{ fontSize: "clamp(32px, 8vw, 64px)", fontWeight: 800, lineHeight: 1.15, marginBottom: "16px", color: "var(--navy)" }}>
+          <h1 className="font-heading animateFadeUp delay2" style={{ fontSize: "clamp(42px, 5vw, 64px)", fontWeight: 800, lineHeight: 1.15, marginBottom: "24px", color: "var(--navy)" }}>
             Nurturing Young Minds,<br/>
             <span style={{ color: "var(--gold)" }}>Building Bright Futures</span>
           </h1>

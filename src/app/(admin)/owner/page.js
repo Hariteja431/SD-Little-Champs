@@ -142,7 +142,7 @@ export default function OwnerDashboard() {
         <StatCard title="Net Balance" value={`₹${stats.grandTotal.toLocaleString()}`} color="var(--sky)" />
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "24px", marginBottom: "32px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))", gap: "24px", marginBottom: "32px" }}>
         <div className="card">
           <h3 className="font-heading" style={{ marginBottom: "16px" }}>Students per Class</h3>
           <div style={{ height: "300px", position: "relative" }}>

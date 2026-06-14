@@ -931,10 +931,10 @@
     background-size: cover; /* Fill the mobile screen */
   }
   .heroPremiumGradient {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 60%, rgba(255,255,255,1) 100%);
   }
   .heroPremiumContent {
-    padding: 95px 5% 20px;
+    padding: 140px 5% 40px;
   }
   .heroPremiumText { width: 100%; }
   .heroStatsCard {
