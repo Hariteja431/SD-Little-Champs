@@ -12,8 +12,8 @@ export default function AboutSection({ settings }) {
   ];
 
   return (
-    <section id="about" className={styles.sectionLight} style={{ position: "relative", overflow: "hidden" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "60px", alignItems: "center" }}>
+    <section id="about" className={styles.sectionLight} style={{ position: "relative", overflow: "hidden", padding: "120px 5%" }}>
+      <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))", gap: "100px", alignItems: "center" }}>
         
         {/* Left: Image Composition */}
         <div style={{ position: "relative", paddingRight: "20px", display: "flex", flexDirection: "column" }} className="animateFadeUp delay1">

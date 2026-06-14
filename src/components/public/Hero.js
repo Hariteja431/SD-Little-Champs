@@ -15,6 +15,7 @@ export default function Hero({ settings }) {
 
       {/* Main Content Area */}
       <div className={styles.heroPremiumContent}>
+        <div className={styles.heroPremiumText}>
         
         {/* Admission Badge */}
         <div className="animateFadeUp delay1" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "var(--white)", border: "1px solid var(--gold)", padding: "8px 20px", borderRadius: "30px", fontSize: "14px", fontWeight: 700, letterSpacing: "0.5px", marginBottom: "32px", color: "var(--navy)", boxShadow: "0 4px 10px rgba(0,0,0,0.05)", width: "fit-content" }}>
@@ -41,6 +42,7 @@ export default function Hero({ settings }) {
           <a href="#about" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", background: "var(--white)", color: "var(--navy)", border: "1px solid var(--navy)", padding: "16px 32px", borderRadius: "8px", fontSize: "16px", fontWeight: 700, textDecoration: "none", transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)" }} onMouseOver={e => { e.currentTarget.style.background = "var(--navy)"; e.currentTarget.style.color = "white"; }} onMouseOut={e => { e.currentTarget.style.background = "var(--white)"; e.currentTarget.style.color = "var(--navy)"; }}>
             Explore Our Campus <ArrowRight size={18} />
           </a>
+        </div>
         </div>
       </div>
 
