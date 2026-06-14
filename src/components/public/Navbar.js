@@ -28,7 +28,7 @@ export default function Navbar({ settings, onLoginClick }) {
       >
         <div className={styles.logo}>
           <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "2px solid var(--gold)", overflow: "hidden", background: "white", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain", transform: "scale(0.9)" }} />
+            <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.15)" }} />
           </div>
           <div>
             <h1 className="font-heading" style={{ fontSize: "20px", color: scrolled ? "var(--navy)" : "white", lineHeight: 1.2, transition: "color 0.3s" }}>
@@ -61,9 +61,9 @@ export default function Navbar({ settings, onLoginClick }) {
         
         {/* Mobile Toggle */}
         <button 
-          className={styles.mobileMenuBtn} 
+          className={`mobile-only ${styles.mobileMenuBtn}`}
           onClick={() => setMobileMenuOpen(true)}
-          style={{ background: "transparent", border: "none", cursor: "pointer", color: scrolled ? "var(--navy)" : "white", display: "none" }}
+          style={{ background: "transparent", border: "none", cursor: "pointer", color: scrolled ? "var(--navy)" : "white" }}
         >
           <Menu size={28} />
         </button>

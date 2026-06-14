@@ -29,7 +29,7 @@ export default function GallerySection({ gallery }) {
   const showNext = (e) => { e.stopPropagation(); setLightboxIndex((prev) => (prev < activeGallery.length - 1 ? prev + 1 : 0)); };
 
   return (
-    <section id="gallery" className={styles.sectionLight}>
+    <section id="gallery" className={styles.sectionLight} style={{ paddingTop: "40px" }}>
       <div className={styles.sectionHeader}>
         <div className={styles.sectionBadge}>📸 GALLERY</div>
         <h2 className={styles.sectionTitle}>Moments at SD</h2>

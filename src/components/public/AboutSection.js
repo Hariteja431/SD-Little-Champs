@@ -19,7 +19,7 @@ export default function AboutSection({ settings }) {
         <div style={{ position: "relative", paddingRight: "20px" }} className="animateFadeUp delay1">
           <div style={{ position: "absolute", top: "-20px", left: "-20px", width: "100%", height: "100%", background: "var(--gold)", borderRadius: "var(--radius-lg)", zIndex: 0, opacity: 0.1 }} />
           <img 
-            src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop" 
+            src="/poster.jpg" 
             alt="Students Learning" 
             style={{ width: "100%", height: "500px", objectFit: "cover", borderRadius: "var(--radius-lg)", position: "relative", zIndex: 1, boxShadow: "var(--shadow-lg)" }} 
           />

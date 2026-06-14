@@ -19,7 +19,7 @@ export default function AchievementsSection() {
   ];
 
   return (
-    <section id="achievements" className={styles.sectionLight}>
+    <section id="achievements" className={styles.sectionLight} style={{ paddingBottom: "40px" }}>
       <div className={styles.sectionHeader} style={{ maxWidth: "800px" }}>
         <div className={styles.sectionBadge}>🏆 RESULTS 2026</div>
         <h2 className={styles.sectionTitle}>SD Academy Created a Sensation</h2>

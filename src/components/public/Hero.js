@@ -3,15 +3,15 @@ import styles from "./public.module.css";
 import { ArrowRight, GraduationCap } from "lucide-react";
 
 export default function Hero({ settings }) {
-  const heroImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop";
+  const heroImage = "/poster.jpg";
 
   return (
     <section id="home" style={{ position: "relative", height: "100vh", minHeight: "800px", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", color: "white", overflow: "hidden" }}>
       {/* Background Image & Overlay */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${heroImage})`, backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed", zIndex: 0, transform: "scale(1.05)", animation: "kenburns 20s infinite alternate ease-in-out" }} />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.95))", zIndex: 1 }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(212, 175, 55, 0.4), rgba(10, 25, 47, 0.95))", zIndex: 1 }} />
       {/* Vignette */}
-      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, transparent 0%, rgba(10, 25, 47, 0.5) 100%)", zIndex: 2 }} />
+      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, transparent 0%, rgba(212, 175, 55, 0.2) 100%)", zIndex: 2 }} />
 
       <div style={{ position: "relative", zIndex: 3, maxWidth: "1200px", padding: "100px 5% 0", display: "flex", flexDirection: "column", alignItems: "center" }}>
         
