@@ -77,8 +77,8 @@ export default function AdminLayout({ children, requiredRole }) {
       {/* Sidebar */}
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
         <div className={styles.sidebarHeader} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "20px 16px" }}>
-          <div style={{ width: "48px", height: "48px", flexShrink: 0, background: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", padding: "2px" }}>
-            <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+          <div style={{ width: "48px", height: "48px", flexShrink: 0, background: "white", borderRadius: "50%", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", padding: "2px" }}>
+            <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "50%" }} />
           </div>
           <div>
             <h2 className="font-heading" style={{ fontSize: "15px", lineHeight: 1.1, margin: 0, color: "white" }}>
@@ -119,8 +119,8 @@ export default function AdminLayout({ children, requiredRole }) {
 
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", borderRight: "1px solid #eee", paddingRight: "16px" }} className="no-mobile">
-              <div style={{ width: "42px", height: "42px" }}>
-                <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              <div style={{ width: "42px", height: "42px", borderRadius: "50%", overflow: "hidden", background: "white", display: "flex", alignItems: "center", justifyContent: "center", padding: "2px", flexShrink: 0 }}>
+                <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "50%" }} />
               </div>
               <div style={{ lineHeight: 1.1 }}>
                 <div style={{ fontSize: "14px", fontWeight: 800, color: "var(--navy)" }}>SD Little Champ's</div>

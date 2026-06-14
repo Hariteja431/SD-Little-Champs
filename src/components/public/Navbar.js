@@ -75,7 +75,7 @@ export default function Navbar({ settings, onLoginClick }) {
             <div className={styles.drawerHeader}>
               <div className={styles.logo}>
                 <div style={{ width: "55px", height: "55px", borderRadius: "50%", border: "2px solid var(--gold)", overflow: "hidden", background: "white", flexShrink: 0 }}>
-                  <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain", transform: "scale(0.9)" }} />
+                  <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain", transform: "scale(0.9)", borderRadius: "50%" }} />
                 </div>
                 <div>
                   <h1 className="font-heading" style={{ fontSize: "16px", color: "var(--navy)", lineHeight: 1.2 }}>SD Little Champ's</h1>
