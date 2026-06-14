@@ -923,15 +923,15 @@
   }
   .heroPremiumBg {
     position: absolute;
-    top: 80px; /* Below navbar */
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-position: top center;
-    background-size: contain; /* Exact uncropped as requested */
+    background-position: 70% center;
+    background-size: cover; /* Fill the mobile screen */
   }
   .heroPremiumGradient {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,1) 100%);
   }
   .heroPremiumContent {
     padding: 120px 5% 40px;
@@ -943,4 +943,5 @@
     padding: 20px;
   }
 }
+
 
