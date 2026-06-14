@@ -27,8 +27,8 @@ export default function Navbar({ settings, onLoginClick }) {
         style={{ top: 0, height: "80px", background: "var(--white)", boxShadow: "var(--shadow-sm)" }}
       >
         <div className={styles.logo}>
-          <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "0.5px solid var(--gold)", overflow: "hidden", background: "white", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.15)" }} />
+          <div style={{ width: "60px", height: "60px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </div>
           <div>
             <h1 className="font-heading" style={{ fontSize: "24px", fontWeight: 800, letterSpacing: "0.5px", color: "var(--navy)", lineHeight: 1.1 }}>
