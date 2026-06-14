@@ -41,6 +41,11 @@ export default function Hero({ settings }) {
         </div>
       </div>
 
+      <div className={styles.mobileHeroImageContainer}>
+        <div className={styles.mobileHeroGradient} />
+        <img src="/hero_bg_image.png" alt="SD Little Champs Campus" />
+      </div>
+
       <div className={styles.heroStatsContainer}>
         {/* Statistics Card */}
         <div className={`animateFadeUp delay5 ${styles.heroStatsCard}`}>
@@ -88,3 +93,4 @@ export default function Hero({ settings }) {
     </section>
   );
 }
+
