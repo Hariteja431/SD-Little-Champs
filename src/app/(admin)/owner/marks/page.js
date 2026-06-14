@@ -5,6 +5,9 @@ import { db } from "@/lib/firebase";
 import { useAuth } from "@/context/AuthContext";
 import * as XLSX from "xlsx";
 
+import { Printer } from "lucide-react";
+import ReportCardPrintView from "@/components/admin/ReportCardPrintView";
+
 export default function MarksManagement() {
   const { userData } = useAuth();
   const [classes, setClasses] = useState([]);
@@ -160,17 +163,30 @@ export default function MarksManagement() {
     XLSX.writeFile(wb, `${className}_${exam}_Marks.xlsx`);
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   const subjectsArr = subjectsStr.split(",").map(s => s.trim()).filter(s => s);
+  const className = classes.find(c => c.id === selectedClass)?.name || "Class";
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-        <h1 className="font-heading" style={{ fontSize: "28px", color: "var(--navy)" }}>Post Marks</h1>
-        {students.length > 0 && <button className="btn btn-primary" onClick={handleExport}>Export to Excel</button>}
-      </div>
+      <div className="no-print">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
+          <h1 className="font-heading" style={{ fontSize: "28px", color: "var(--navy)" }}>Post Marks</h1>
+          {students.length > 0 && (
+            <div style={{ display: "flex", gap: "12px" }}>
+              <button className="btn btn-ghost" onClick={handlePrint}>
+                <Printer size={18} /> Print Report Cards
+              </button>
+              <button className="btn btn-primary" onClick={handleExport}>Export to Excel</button>
+            </div>
+          )}
+        </div>
 
-      <div className="card" style={{ marginBottom: "24px" }}>
-        <form onSubmit={handleSearch} style={{ display: "flex", gap: "16px", alignItems: "flex-end", flexWrap: "wrap" }}>
+        <div className="card" style={{ marginBottom: "24px" }}>
+          <form onSubmit={handleSearch} style={{ display: "flex", gap: "16px", alignItems: "flex-end", flexWrap: "wrap" }}>
           <div className="input-group" style={{ flex: 1, minWidth: "200px" }}>
             <label className="input-label">Class</label>
             <select className="input-field" value={selectedClass} onChange={e => setSelectedClass(e.target.value)} required>
@@ -236,6 +252,19 @@ export default function MarksManagement() {
             </button>
           </div>
         </div>
+      )}
+      </div>
+
+      {/* Hidden print view */}
+      {!loading && students.length > 0 && (
+        <ReportCardPrintView 
+          students={students} 
+          marks={marks} 
+          exam={exam} 
+          className={className} 
+          subjectsArr={subjectsArr} 
+          calculateGrade={calculateGrade} 
+        />
       )}
     </div>
   );
