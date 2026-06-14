@@ -21,7 +21,7 @@ export default function AboutSection({ settings }) {
           <img 
             src="/poster.jpg" 
             alt="Students Learning" 
-            style={{ width: "100%", height: "500px", objectFit: "cover", borderRadius: "var(--radius-lg)", position: "relative", zIndex: 1, boxShadow: "var(--shadow-lg)" }} 
+            style={{ width: "100%", height: "auto", maxHeight: "600px", objectFit: "contain", borderRadius: "var(--radius-lg)", position: "relative", zIndex: 1, boxShadow: "var(--shadow-lg)", background: "var(--light-bg)" }} 
           />
           {/* Floating Experience Card */}
           <div style={{ position: "absolute", bottom: "-30px", right: "10px", background: "var(--white)", padding: "24px", borderRadius: "16px", boxShadow: "var(--shadow-lg)", zIndex: 2, display: "flex", alignItems: "center", gap: "16px" }}>

@@ -26,12 +26,20 @@ export default function NoticesSection({ notices }) {
         <div style={{ position: "absolute", top: 0, left: 0, width: "100px", height: "100%", background: "linear-gradient(to right, var(--light-bg), transparent)", zIndex: 2 }} />
         <div style={{ position: "absolute", top: 0, right: 0, width: "100px", height: "100%", background: "linear-gradient(to left, var(--light-bg), transparent)", zIndex: 2 }} />
         
-        <div className={styles.marqueeTrack} style={{ display: "flex", alignItems: "center", gap: "50px", padding: "20px 0" }}>
-          {[...Array(6)].map((_, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-              <span style={{ fontSize: "20px", color: "var(--navy)", fontWeight: 800 }}>📢 NOTICE</span>
-              <span style={{ fontSize: "20px", color: "var(--royal-blue)", fontWeight: 700 }}>Admissions Open for 2026-27! Register Now. 2027-2028 also available</span>
-              <span style={{ color: "var(--gold)" }}>•</span>
+        <div className={styles.marqueeTrack} style={{ display: "flex", alignItems: "center", padding: "20px 0" }}>
+          {[...displayNotices, ...displayNotices, ...displayNotices, ...displayNotices].map((notice, i) => (
+            <div key={`${notice.id}-${i}`} className="premiumCard" style={{ minWidth: "350px", maxWidth: "350px", padding: "20px", display: "flex", gap: "16px", margin: "0 15px", flexShrink: 0 }}>
+              <div style={{ width: "40px", height: "40px", background: "rgba(30, 58, 138, 0.05)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--royal-blue)", flexShrink: 0 }}>
+                <Bell size={20} />
+              </div>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "1px" }}>{notice.type}</span>
+                  <span style={{ fontSize: "11px", color: "var(--text-muted)", fontWeight: 600 }}>{new Date(notice.date).toLocaleDateString()}</span>
+                </div>
+                <h5 style={{ fontSize: "15px", color: "var(--navy)", fontWeight: 700, marginBottom: "8px", lineHeight: 1.3 }}>{notice.title}</h5>
+                <p style={{ fontSize: "13px", color: "var(--text-muted)", lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{notice.body}</p>
+              </div>
             </div>
           ))}
         </div>
