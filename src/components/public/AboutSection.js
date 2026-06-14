@@ -23,11 +23,12 @@ export default function AboutSection({ settings }) {
             alt="Students Learning" 
             style={{ width: "100%", height: "auto", maxHeight: "600px", objectFit: "contain", borderRadius: "var(--radius-lg)", position: "relative", zIndex: 1, boxShadow: "var(--shadow-lg)", background: "var(--light-bg)" }} 
           />
-          {/* Floating Experience Card */}
-          <div style={{ position: "absolute", bottom: "-30px", right: "10px", background: "var(--white)", padding: "24px", borderRadius: "16px", boxShadow: "var(--shadow-lg)", zIndex: 2, display: "flex", alignItems: "center", gap: "16px" }}>
-            <div style={{ fontSize: "42px", fontWeight: 800, color: "var(--royal-blue)", lineHeight: 1 }}>15+</div>
-            <div style={{ fontSize: "14px", fontWeight: 700, color: "var(--text-muted)", lineHeight: 1.3, textTransform: "uppercase" }}>Years of<br/>Excellence</div>
-          </div>
+        </div>
+        
+        {/* Experience Card Moved Below Image */}
+        <div style={{ marginTop: "20px", background: "var(--white)", padding: "24px", borderRadius: "16px", boxShadow: "var(--shadow-sm)", display: "flex", alignItems: "center", gap: "16px", width: "fit-content" }}>
+          <div style={{ fontSize: "42px", fontWeight: 800, color: "var(--royal-blue)", lineHeight: 1 }}>15+</div>
+          <div style={{ fontSize: "14px", fontWeight: 700, color: "var(--text-muted)", lineHeight: 1.3, textTransform: "uppercase" }}>Years of<br/>Excellence</div>
         </div>
 
         {/* Right: Typography & Features */}

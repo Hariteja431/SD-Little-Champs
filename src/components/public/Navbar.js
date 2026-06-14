@@ -27,16 +27,14 @@ export default function Navbar({ settings, onLoginClick }) {
         style={{ top: 0, height: "80px" }}
       >
         <div className={styles.logo}>
-          <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "2px solid var(--gold)", overflow: "hidden", background: "white", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "0.5px solid var(--gold)", overflow: "hidden", background: "white", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <img src="/logo.png" alt="SD Little Champs Logo" style={{ width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.15)" }} />
           </div>
           <div>
-            <h1 className="font-heading" style={{ fontSize: "20px", color: scrolled ? "var(--navy)" : "white", lineHeight: 1.2, transition: "color 0.3s" }}>
-              SD Little Champ's
+            <h1 className="font-heading" style={{ fontSize: "24px", fontWeight: 800, letterSpacing: "0.5px", color: scrolled ? "var(--navy)" : "white", lineHeight: 1.1, transition: "color 0.3s" }}>
+              SD Little Champ's<br/>
+              <span style={{ fontSize: "16px", fontWeight: 600 }}>E.M School</span>
             </h1>
-            <p style={{ fontSize: "12px", color: scrolled ? "var(--text-muted)" : "rgba(255,255,255,0.8)", transition: "color 0.3s", fontWeight: 600 }}>
-              E.M School
-            </p>
           </div>
         </div>
 

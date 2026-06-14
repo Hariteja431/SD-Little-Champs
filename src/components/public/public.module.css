@@ -822,8 +822,11 @@
   .mobileMenuBtn { display: block; background: transparent; border: none; cursor: pointer; color: var(--white); }
   .navbarScrolled .mobileMenuBtn { color: var(--navy); }
   .grid2, .grid3, .grid4 { grid-template-columns: 1fr; }
-  .statBlock { width: 100%; }
-  .lightboxNav { display: none; /* Rely on touch/tap to close or make arrows internal on mobile */ }
+  .statBlock { width: 100%; margin-bottom: 20px; }
+  .statsBar { display: flex !important; flex-direction: column !important; gap: 40px !important; padding: 20px !important; }
+  .lightboxNav { display: flex !important; background: rgba(0,0,0,0.5); }
+  .lightboxPrev { left: 10px; }
+  .lightboxNext { right: 10px; }
   .lightboxClose { right: 0; top: -40px; }
 }
 
