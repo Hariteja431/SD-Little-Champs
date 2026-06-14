@@ -76,9 +76,17 @@ export default function AdminLayout({ children, requiredRole }) {
     <div className={styles.adminWrapper}>
       {/* Sidebar */}
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
-        <div className={styles.sidebarHeader}>
-          <h2 className="font-heading">SD Champs</h2>
-          <span className={styles.roleBadge}>{requiredRole}</span>
+        <div className={styles.sidebarHeader} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "20px 16px" }}>
+          <div style={{ width: "36px", height: "36px", flexShrink: 0, background: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", padding: "2px" }}>
+            <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+          </div>
+          <div>
+            <h2 className="font-heading" style={{ fontSize: "15px", lineHeight: 1.1, margin: 0, color: "white" }}>
+              SD Little Champ's<br/>
+              <span style={{ fontSize: "11px", color: "var(--gold)", fontWeight: "normal" }}>E.M School</span>
+            </h2>
+          </div>
+          <span className={styles.roleBadge} style={{ marginLeft: "auto", fontSize: "9px", padding: "2px 6px" }}>{requiredRole}</span>
         </div>
         <nav className={styles.nav}>
           {links.map((link) => (
@@ -109,10 +117,22 @@ export default function AdminLayout({ children, requiredRole }) {
             {links.find((l) => l.path === pathname)?.name || "Dashboard"}
           </div>
 
-          <button className={styles.logoutBtn} onClick={handleLogout}>
-            <LogOut size={18} />
-            <span>Logout</span>
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", borderRight: "1px solid #eee", paddingRight: "16px" }} className="no-mobile">
+              <div style={{ width: "32px", height: "32px" }}>
+                <img src="/logo.png" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              </div>
+              <div style={{ lineHeight: 1.1 }}>
+                <div style={{ fontSize: "14px", fontWeight: 800, color: "var(--navy)" }}>SD Little Champ's</div>
+                <div style={{ fontSize: "11px", fontWeight: 600, color: "var(--text-muted)" }}>E.M School</div>
+              </div>
+            </div>
+            
+            <button className={styles.logoutBtn} onClick={handleLogout}>
+              <LogOut size={18} />
+              <span>Logout</span>
+            </button>
+          </div>
         </header>
 
         {/* Page Content */}
