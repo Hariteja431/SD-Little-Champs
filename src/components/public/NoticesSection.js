@@ -9,7 +9,13 @@ export default function NoticesSection({ notices }) {
     { id: 4, title: "Quarterly Examination Timetable", date: "2026-07-01", type: "Exam", body: "The timetable for quarterly examinations has been released on the portal." },
   ];
 
-  const displayNotices = notices && notices.length > 0 ? notices.filter(n => (n.body && n.body !== "") && n.title !== "Welcome to our new website" || (n.body && n.body.includes("We are excited to launch"))) : defaultNotices;
+  const rawNotices = notices && notices.length > 0 ? notices.filter(n => n.body && n.body !== "") : defaultNotices;
+  const displayNotices = rawNotices.reduce((acc, current) => {
+    if (!acc.find(item => item.title === current.title)) {
+      acc.push(current);
+    }
+    return acc;
+  }, []);
 
   return (
     <section id="notices" className={styles.sectionLight}>
