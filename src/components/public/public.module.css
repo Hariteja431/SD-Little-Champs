@@ -848,7 +848,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
 }
 
 .heroPremiumBg {
@@ -857,9 +857,9 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/hero_bg_image.png");
-  background-size: contain;
-  background-position: right center;
+  background-image: url("/new-hero-bg.png");
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
 }
@@ -867,7 +867,7 @@
 .heroPremiumGradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.85) 55%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 55%, rgba(255,255,255,0) 100%);
   z-index: 1;
 }
 
@@ -877,7 +877,7 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 180px 5% 40px; /* 180px gives generous space so navbar absolutely never covers the badge */
+  padding: 60px 5% 40px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -927,15 +927,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/mobile_hero_bg.png");
+    background-image: url("/mobile-hero-bg-new.png");
     background-position: center;
     background-size: cover; /* Fill the mobile screen */
   }
   .heroPremiumGradient {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 60%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,1) 100%);
   }
   .heroPremiumContent {
-    padding: 140px 5% 40px;
+    padding: 40px 5% 40px;
   }
   .heroPremiumText { width: 100%; }
   .heroStatsCard {

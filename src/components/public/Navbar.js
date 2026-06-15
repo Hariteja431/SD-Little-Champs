@@ -24,7 +24,7 @@ export default function Navbar({ settings, onLoginClick }) {
       {/* Navbar Overlay */}
       <nav 
         className={`${styles.navbar} ${styles.navbarScrolled}`}
-        style={{ top: 0, height: "80px", background: "var(--white)", boxShadow: "var(--shadow-sm)" }}
+        style={{ position: "relative", top: 0, height: "80px", background: "var(--white)", boxShadow: "var(--shadow-sm)", zIndex: 50 }}
       >
         <div className={styles.logo}>
           <div style={{ width: "75px", height: "75px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>

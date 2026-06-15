@@ -23,9 +23,12 @@ export default function Footer({ settings }) {
             A Great Place To Learn. Empowering students with knowledge, values, and confidence for a brighter tomorrow.
           </p>
           
-          <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: "12px", padding: "16px", border: "1px solid rgba(255,255,255,0.05)" }}>
-            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "4px" }}>Secure Fee Payment UPI</p>
-            <p style={{ color: "var(--gold)", fontSize: "14px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "1px", wordBreak: "break-all" }}>
+          <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: "12px", padding: "16px", border: "1px solid rgba(255,255,255,0.05)", textAlign: "center" }}>
+            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "12px" }}>Secure Fee Payment UPI</p>
+            <div style={{ background: "white", padding: "8px", borderRadius: "8px", display: "inline-block", marginBottom: "12px" }}>
+              <img src="/qr-code.png" alt="Scan to Pay QR Code" style={{ width: "120px", height: "120px", objectFit: "contain" }} />
+            </div>
+            <p style={{ color: "var(--gold)", fontSize: "14px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "1px", wordBreak: "break-all", margin: 0 }}>
               {settings?.upiId || "0797714A0249484.bqr@kotak"}
             </p>
           </div>

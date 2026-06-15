@@ -196,9 +196,17 @@ export default function MarksManagement() {
           </div>
           <div className="input-group" style={{ flex: 1, minWidth: "150px" }}>
             <label className="input-label">Exam Type</label>
-            <select className="input-field" value={exam} onChange={e => setExam(e.target.value)}>
-              {["FA1", "FA2", "SA1", "FA3", "FA4", "SA2"].map(e => <option key={e} value={e}>{e}</option>)}
-            </select>
+            <input 
+              list="exam-types" 
+              className="input-field" 
+              value={exam} 
+              onChange={e => setExam(e.target.value)} 
+              placeholder="e.g. FA1 or Custom"
+              required
+            />
+            <datalist id="exam-types">
+              {["FA1", "FA2", "SA1", "FA3", "FA4", "SA2"].map(e => <option key={e} value={e} />)}
+            </datalist>
           </div>
           <div className="input-group" style={{ flex: 2, minWidth: "300px" }}>
             <label className="input-label">Subjects (comma separated)</label>

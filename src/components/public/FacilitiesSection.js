@@ -4,7 +4,6 @@ import { MonitorPlay, Music, Microscope, BookOpen, Home, Palette, Activity, Vide
 export default function FacilitiesSection({ facilities }) {
   const displayFacilities = [
     { id: 1, name: "Digital Classrooms", description: "Smart boards and projectors for interactive learning.", icon: <MonitorPlay size={32} /> },
-    { id: 2, name: "Dance Studio", description: "Dedicated dance class with professional audio system.", icon: <Music size={32} /> },
     { id: 3, name: "Science Lab", description: "Hands-on science experiments and fair exhibitions.", icon: <Microscope size={32} /> },
     { id: 4, name: "Library", description: "Rich collection of books, magazines and learning resources.", icon: <BookOpen size={32} /> },
     { id: 5, name: "AC Hostel", description: "Air-conditioned hostel with all facilities for outstation students.", icon: <Home size={32} /> },
