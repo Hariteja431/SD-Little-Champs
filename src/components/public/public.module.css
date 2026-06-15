@@ -800,6 +800,10 @@
    MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 1024px) {
+  :global(.no-mobile) { display: none !important; }
+  .navLinks { display: none !important; }
+  .mobileMenuBtn { display: block !important; background: transparent; border: none; cursor: pointer; color: var(--navy); }
+  
   .heroContainer { flex-direction: column; text-align: center; }
   .heroTitleNew { font-size: 48px; }
   .heroSubtitleNew { margin: 0 auto 40px; }
@@ -809,6 +813,11 @@
   .statBlock { width: 40%; }
   .noticeDashboard { grid-template-columns: 1fr; }
   .aboutChecklist { grid-template-columns: 1fr; }
+  .heroStatsCard { grid-template-columns: 1fr 1fr !important; }
+  .heroStatItem:nth-child(even) { border-right: none; }
+  .heroStatItem:nth-child(3) { border-right: 1px solid rgba(0,0,0,0.05); } /* Ensure 3 has border if it was removed by something else, though not needed */
+  .heroStatItem { border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; } /* Add bottom border for first row */
+  .heroStatItem:nth-child(3), .heroStatItem:nth-child(4) { border-bottom: none; padding-bottom: 0; }
 }
 
 @media (max-width: 768px) {
@@ -848,7 +857,8 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 116px);
+  margin-top: 116px;
 }
 
 .heroPremiumBg {
@@ -910,11 +920,25 @@
   border: 1px solid rgba(0,0,0,0.03);
 }
 
+.heroStatItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.heroStatItem:last-child {
+  border-right: none;
+}
+
 @media (max-width: 1024px) {
-  .heroPremiumGradient {
-    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 75%, rgba(255,255,255,0) 100%);
+  .heroPremium {
+    min-height: auto;
   }
-  .heroPremiumText { width: 75%; }
+  .heroPremiumGradient {
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 60%, rgba(255,255,255,0) 100%);
+  }
+  .heroPremiumText { width: 85%; }
 }
 
 @media (max-width: 768px) {
