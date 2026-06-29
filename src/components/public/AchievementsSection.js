@@ -31,7 +31,7 @@ export default function AchievementsSection() {
         </p>
       </div>
 
-      <div className={styles.statsBar} style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", display: "grid", gap: "20px" }}>
+      <div className={styles.statsBar}>
         <div className={styles.statBlock}>
           <Trophy size={36} />
           <h3>98.75 <span style={{fontSize: "16px", color: "var(--text-muted)", fontWeight: 600}}>/ 100</span></h3>

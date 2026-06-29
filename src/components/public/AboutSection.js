@@ -1,5 +1,6 @@
 import styles from "./public.module.css";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutSection({ settings }) {
   const features = [
@@ -24,9 +25,11 @@ export default function AboutSection({ settings }) {
           </div>
           <div style={{ position: "relative" }}>
             <div style={{ position: "absolute", top: "-20px", left: "-20px", width: "100%", height: "100%", background: "var(--gold)", borderRadius: "var(--radius-lg)", zIndex: 0, opacity: 0.1 }} />
-            <img 
+            <Image 
               src="/poster.jpg" 
               alt="Students Learning" 
+              width={800}
+              height={600}
               style={{ width: "100%", height: "auto", maxHeight: "600px", objectFit: "contain", borderRadius: "var(--radius-lg)", position: "relative", zIndex: 1, boxShadow: "var(--shadow-lg)", background: "var(--light-bg)" }} 
             />
           </div>
@@ -49,7 +52,7 @@ export default function AboutSection({ settings }) {
             At SD Little Champ's E.M School, Balli Gattam, Narsipatnam, we believe that every child is unique and deserves an environment where they can learn, grow, and succeed with confidence. We combine modern teaching methods with a caring and supportive atmosphere to ensure that students develop not only knowledge but also character and life skills.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "40px" }}>
+          <div className={styles.aboutChecklist}>
             {features.map((feature, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                 <CheckCircle2 color="var(--gold)" fill="rgba(212, 175, 55, 0.1)" size={20} />

@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from "./public.module.css";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
+import Image from "next/image";
+
 const localGalleryImages = [
   { id: "img1", url: "/gallery/Screenshot 2026-06-14 123659.png", caption: "Campus Activity" },
   { id: "img2", url: "/gallery/Screenshot 2026-06-14 123713.png", caption: "Students" },
@@ -54,10 +56,12 @@ export default function GallerySection({ gallery }) {
               cursor: "pointer",
             }}
           >
-            <img 
+            <Image 
               src={item.url} 
               alt={item.caption} 
-              style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} 
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} 
               onMouseOver={e => e.currentTarget.style.transform = "scale(1.08)"}
               onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}
             />

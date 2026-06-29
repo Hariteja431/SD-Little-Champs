@@ -45,7 +45,7 @@ export default function Hero({ settings }) {
       <div className={styles.heroStatsContainer}>
         {/* Statistics Card */}
         <div className={`animateFadeUp delay5 ${styles.heroStatsCard}`}>
-          <div style={{ display: "flex", alignItems: "center", gap: "16px", borderRight: "1px solid rgba(0,0,0,0.05)" }}>
+          <div className={styles.heroStatItem}>
             <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "2px solid var(--gold)", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--navy)", color: "var(--white)", flexShrink: 0 }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             </div>
@@ -55,7 +55,7 @@ export default function Hero({ settings }) {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "16px", borderRight: "1px solid rgba(0,0,0,0.05)" }}>
+          <div className={styles.heroStatItem}>
             <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "2px solid var(--gold)", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--navy)", color: "var(--white)", flexShrink: 0 }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
             </div>
@@ -65,7 +65,7 @@ export default function Hero({ settings }) {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "16px", borderRight: "1px solid rgba(0,0,0,0.05)" }}>
+          <div className={styles.heroStatItem}>
             <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "2px solid var(--gold)", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--navy)", color: "var(--white)", flexShrink: 0 }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
             </div>
@@ -75,7 +75,7 @@ export default function Hero({ settings }) {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <div className={styles.heroStatItem}>
             <div style={{ width: "50px", height: "50px", borderRadius: "50%", border: "2px solid var(--gold)", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--navy)", color: "var(--white)", flexShrink: 0 }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
             </div>
