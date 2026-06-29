@@ -11,7 +11,11 @@ export default function CollectFee() {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [classInfo, setClassInfo] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [receiptUrl, setReceiptUrl] = useState(null); // Simple mock for now
+  
+  // New States for Fee Tracking
+  const [totalTuition, setTotalTuition] = useState(0);
+  const [tuitionPaid, setTuitionPaid] = useState(0);
+  const [lastReceipt, setLastReceipt] = useState(null);
   
   const [qrAmount, setQrAmount] = useState("");
   const [dynamicQrUrl, setDynamicQrUrl] = useState(null);
@@ -55,14 +59,36 @@ export default function CollectFee() {
     setSelectedStudent(student);
     setSearchResults([]);
     setSearchTerm("");
+    setLastReceipt(null);
+    setFormData(prev => ({...prev, amount: ""})); // reset amount
     
-    // Fetch class fee info
+    // Fetch class fee info and past payments
+    let fetchedTotal = 0;
     if (student.classId) {
       const classSnap = await getDocs(query(collection(db, "classes"), where("__name__", "==", student.classId)));
       if (!classSnap.empty) {
-        setClassInfo(classSnap.docs[0].data());
+        const cInfo = classSnap.docs[0].data();
+        setClassInfo(cInfo);
+        
+        if (student.feeType === "custom") {
+          fetchedTotal = Number(student.customAnnualFee) || 0;
+        } else {
+          fetchedTotal = (Number(cInfo.term1Fee) || 0) + (Number(cInfo.term2Fee) || 0) + (Number(cInfo.term3Fee) || 0);
+        }
+        setTotalTuition(fetchedTotal);
       }
     }
+
+    // Fetch past payments
+    const paymentsSnap = await getDocs(query(collection(db, "feePayments"), where("studentId", "==", student.id)));
+    let paidTotal = 0;
+    paymentsSnap.forEach(doc => {
+      const data = doc.data();
+      if (data.feeType === "tuition") {
+        paidTotal += Number(data.amount) || 0;
+      }
+    });
+    setTuitionPaid(paidTotal);
   };
 
   const handleCollect = async (e) => {
@@ -85,21 +111,68 @@ export default function CollectFee() {
         remarks: formData.remarks,
         date: new Date(formData.date),
         collectedByUid: user.uid,
-        collectedByRole: "owner", // Because this is the owner dashboard
-        isSettled: true, // Owner collections are auto-settled
+        collectedByRole: "owner",
+        isSettled: true,
         createdAt: serverTimestamp()
       };
 
       await addDoc(collection(db, "feePayments"), paymentData);
       
       alert(`Fee collected successfully! Receipt ID: ${receiptId}`);
-      setSelectedStudent(null);
+      
+      setLastReceipt({
+        ...paymentData,
+        fatherPhone: selectedStudent.fatherPhone || ""
+      });
+      
+      // Update local state for immediate feedback if they want to pay more without refreshing
+      if (formData.feeType === "tuition") {
+         setTuitionPaid(prev => prev + Number(formData.amount));
+      }
+      
       setFormData({ feeType: "tuition", term: "1", amount: "", mode: "cash", remarks: "", date: new Date().toISOString().split("T")[0] });
     } catch (err) {
       console.error(err);
       alert("Error collecting fee.");
     }
     setSaving(false);
+  };
+
+  const sendWhatsApp = () => {
+    if (!lastReceipt || !lastReceipt.fatherPhone) {
+      alert("No father's phone number found for this student.");
+      return;
+    }
+
+    const currentTotalPaid = tuitionPaid; // The tuitionPaid already includes this transaction due to the local update above
+    const remainingBalance = totalTuition - currentTotalPaid;
+    const termLabel = lastReceipt.term ? `Term ${lastReceipt.term}` : 'tuition';
+
+    const message = `SD Little Champ's English Medium School
+
+Dear Parent,
+We have received your payment of ₹${lastReceipt.amount} towards ${termLabel} fees for ${lastReceipt.studentName} (PIN: ${lastReceipt.studentPin}).
+
+*Fee Summary:*
+Total Annual Fee: ₹${totalTuition}
+Total Paid to Date: ₹${currentTotalPaid}
+Remaining Balance: ₹${remainingBalance}
+
+*Important Dates for Remaining Terms:*
+- Term 2 is due in August.
+- Term 3 is due in September/October.
+
+Thank you!`;
+
+    // Format phone number to international format, assuming India (+91) if 10 digits
+    let phone = lastReceipt.fatherPhone.replace(/\D/g, '');
+    if (phone.length === 10) {
+      phone = `91${phone}`;
+    }
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -140,11 +213,38 @@ export default function CollectFee() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid var(--border)" }}>
             <div>
               <h2 className="font-heading" style={{ color: "var(--navy)", fontSize: "24px", marginBottom: "4px" }}>{selectedStudent.name}</h2>
-              <div style={{ color: "var(--muted)" }}>PIN: <strong>{selectedStudent.pin}</strong> | Class: <strong>{selectedStudent.className}</strong></div>
-              {selectedStudent.feeType === "custom" && <div style={{ color: "var(--gold-dark)", marginTop: "4px", fontSize: "14px", fontWeight: 600 }}>Custom Concession Applied: ₹{selectedStudent.customAnnualFee}</div>}
+              <div style={{ color: "var(--muted)" }}>PIN: <strong>{selectedStudent.pin}</strong> | Class: <strong>{selectedStudent.className}</strong> | Father's Phone: <strong>{selectedStudent.fatherPhone || "N/A"}</strong></div>
             </div>
-            <button className="btn btn-ghost" onClick={() => setSelectedStudent(null)}>Change Student</button>
+            <button className="btn btn-ghost" onClick={() => { setSelectedStudent(null); setLastReceipt(null); }}>Change Student</button>
           </div>
+
+          {/* Dynamic Balance Tracking UI */}
+          <div style={{ display: "flex", justifyContent: "space-between", background: "var(--bg)", padding: "16px", borderRadius: "8px", border: "1px solid var(--border)", marginBottom: "24px" }}>
+             <div style={{ textAlign: "center", flex: 1 }}>
+               <div style={{ fontSize: "12px", color: "var(--muted)", fontWeight: "bold", textTransform: "uppercase" }}>Total Annual Fee</div>
+               <div style={{ fontSize: "20px", color: "var(--navy)", fontWeight: "bold" }}>₹{totalTuition}</div>
+             </div>
+             <div style={{ width: "1px", background: "var(--border)" }}></div>
+             <div style={{ textAlign: "center", flex: 1 }}>
+               <div style={{ fontSize: "12px", color: "var(--muted)", fontWeight: "bold", textTransform: "uppercase" }}>Total Paid So Far</div>
+               <div style={{ fontSize: "20px", color: "var(--green)", fontWeight: "bold" }}>₹{tuitionPaid}</div>
+             </div>
+             <div style={{ width: "1px", background: "var(--border)" }}></div>
+             <div style={{ textAlign: "center", flex: 1 }}>
+               <div style={{ fontSize: "12px", color: "var(--muted)", fontWeight: "bold", textTransform: "uppercase" }}>Remaining Balance</div>
+               <div style={{ fontSize: "20px", color: "var(--red)", fontWeight: "bold" }}>₹{Math.max(0, totalTuition - tuitionPaid)}</div>
+             </div>
+          </div>
+
+          {lastReceipt && (
+            <div style={{ background: "rgba(34, 197, 94, 0.1)", border: "1px solid var(--green)", padding: "20px", borderRadius: "8px", marginBottom: "24px", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+              <div style={{ color: "var(--green)", fontWeight: "bold", fontSize: "18px" }}>Payment Recorded! (Receipt: {lastReceipt.receiptId})</div>
+              <button onClick={sendWhatsApp} className="btn btn-primary" style={{ background: "#25D366", borderColor: "#25D366", display: "flex", alignItems: "center", gap: "8px" }}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                 Send Receipt via WhatsApp
+              </button>
+            </div>
+          )}
 
           <form onSubmit={handleCollect} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             
@@ -202,22 +302,6 @@ export default function CollectFee() {
                     <option value="annual">Full Annual</option>
                   </select>
                 </div>
-              )}
-            </div>
-
-            {/* Hint Box */}
-            <div style={{ background: "var(--bg)", padding: "12px", borderRadius: "8px", fontSize: "14px" }}>
-              <strong>Expected Amounts (Based on Class Settings):</strong><br/>
-              {classInfo ? (
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginTop: "8px", color: "var(--muted)" }}>
-                  <div>Term 1: ₹{classInfo.term1Fee}</div>
-                  <div>Hostel (Monthly): ₹{classInfo.hostelFeePerMonth}</div>
-                  <div>Term 2: ₹{classInfo.term2Fee}</div>
-                  <div>Books: ₹{classInfo.booksFee}</div>
-                  <div>Term 3: ₹{classInfo.term3Fee}</div>
-                </div>
-              ) : (
-                <span style={{ color: "var(--muted)" }}>No fee structure defined for this class.</span>
               )}
             </div>
 
