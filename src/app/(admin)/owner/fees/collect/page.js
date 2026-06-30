@@ -348,7 +348,7 @@ Thank you!`;
           <div style={{ border: "2px solid #000", padding: "40px", maxWidth: "800px", margin: "0 auto", fontFamily: "sans-serif", color: "#000" }}>
             <div style={{ textAlign: "center", borderBottom: "2px solid #000", paddingBottom: "20px", marginBottom: "20px" }}>
               <h1 style={{ margin: 0, fontSize: "28px", textTransform: "uppercase", letterSpacing: "2px" }}>SD Little Champ's English Medium School</h1>
-              <p style={{ margin: "8px 0 0 0", fontSize: "16px" }}>Ph: +91-8886676342 | Email: principal@sdchamps.com</p>
+              <p style={{ margin: "8px 0 0 0", fontSize: "16px" }}>Ph: +91-8886676342</p>
               <h2 style={{ display: "inline-block", background: "#000", color: "#fff", padding: "8px 24px", borderRadius: "20px", marginTop: "16px", fontSize: "18px" }}>FEE RECEIPT</h2>
             </div>
             
