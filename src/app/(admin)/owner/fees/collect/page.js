@@ -176,7 +176,20 @@ Thank you!`;
   };
 
   return (
-    <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+    <>
+      <style>{`
+        @media print {
+          body * { visibility: hidden; }
+          .receipt-print-area, .receipt-print-area * { visibility: visible; }
+          .receipt-print-area { position: absolute; left: 0; top: 0; width: 100%; }
+          .no-print { display: none !important; }
+        }
+        .receipt-print-area { display: none; }
+        @media print {
+          .receipt-print-area { display: block; }
+        }
+      `}</style>
+      <div className="no-print" style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
       <h1 className="font-heading" style={{ fontSize: "28px", color: "var(--navy)", marginBottom: "24px" }}>Collect Fee</h1>
 
       {!selectedStudent ? (
@@ -239,10 +252,16 @@ Thank you!`;
           {lastReceipt && (
             <div style={{ background: "rgba(34, 197, 94, 0.1)", border: "1px solid var(--green)", padding: "20px", borderRadius: "8px", marginBottom: "24px", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
               <div style={{ color: "var(--green)", fontWeight: "bold", fontSize: "18px" }}>Payment Recorded! (Receipt: {lastReceipt.receiptId})</div>
-              <button onClick={sendWhatsApp} className="btn btn-primary" style={{ background: "#25D366", borderColor: "#25D366", display: "flex", alignItems: "center", gap: "8px" }}>
-                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                 Send Receipt via WhatsApp
-              </button>
+              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
+                <button type="button" onClick={sendWhatsApp} className="btn btn-primary" style={{ background: "#25D366", borderColor: "#25D366", display: "flex", alignItems: "center", gap: "8px" }}>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                   Send Receipt via WhatsApp
+                </button>
+                <button type="button" onClick={() => window.print()} className="btn btn-ghost" style={{ border: "2px solid var(--navy)", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                  Print Professional Receipt
+                </button>
+              </div>
             </div>
           )}
 
@@ -321,6 +340,72 @@ Thank you!`;
           </form>
         </div>
       )}
-    </div>
+      </div>
+      
+      {/* Professional Receipt - Only Visible During Print */}
+      {lastReceipt && (
+        <div className="receipt-print-area">
+          <div style={{ border: "2px solid #000", padding: "40px", maxWidth: "800px", margin: "0 auto", fontFamily: "sans-serif", color: "#000" }}>
+            <div style={{ textAlign: "center", borderBottom: "2px solid #000", paddingBottom: "20px", marginBottom: "20px" }}>
+              <h1 style={{ margin: 0, fontSize: "28px", textTransform: "uppercase", letterSpacing: "2px" }}>SD Little Champ's English Medium School</h1>
+              <p style={{ margin: "8px 0 0 0", fontSize: "16px" }}>Ph: +91-8886676342 | Email: principal@sdchamps.com</p>
+              <h2 style={{ display: "inline-block", background: "#000", color: "#fff", padding: "8px 24px", borderRadius: "20px", marginTop: "16px", fontSize: "18px" }}>FEE RECEIPT</h2>
+            </div>
+            
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "30px", fontSize: "16px" }}>
+              <div><strong>Receipt No:</strong> {lastReceipt.receiptId}</div>
+              <div><strong>Date:</strong> {new Date(lastReceipt.date).toLocaleDateString("en-IN")}</div>
+            </div>
+
+            <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "30px" }}>
+              <tbody>
+                <tr>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}><strong>Student Name:</strong></td>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}>{lastReceipt.studentName}</td>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}><strong>Roll / PIN:</strong></td>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}>{lastReceipt.studentPin}</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}><strong>Class:</strong></td>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}>{lastReceipt.className}</td>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}><strong>Payment Mode:</strong></td>
+                  <td style={{ padding: "10px", border: "1px solid #ccc", textTransform: "capitalize" }}>{lastReceipt.mode}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "40px" }}>
+              <thead>
+                <tr style={{ background: "#f5f5f5" }}>
+                  <th style={{ padding: "12px", border: "1px solid #000", textAlign: "left" }}>Description</th>
+                  <th style={{ padding: "12px", border: "1px solid #000", textAlign: "right" }}>Amount (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ padding: "12px", border: "1px solid #000" }}>
+                    <div style={{ fontWeight: "bold", textTransform: "capitalize" }}>{lastReceipt.feeType} Fee</div>
+                    {lastReceipt.term && <div style={{ fontSize: "14px", color: "#555" }}>Term {lastReceipt.term}</div>}
+                    {lastReceipt.remarks && <div style={{ fontSize: "14px", color: "#555" }}>Note: {lastReceipt.remarks}</div>}
+                  </td>
+                  <td style={{ padding: "12px", border: "1px solid #000", textAlign: "right", fontSize: "18px", fontWeight: "bold" }}>
+                    {lastReceipt.amount}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginTop: "80px" }}>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ borderTop: "1px solid #000", width: "200px", paddingTop: "8px" }}>Parent / Guardian Signature</div>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ borderTop: "1px solid #000", width: "200px", paddingTop: "8px" }}>Authorized Signatory</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

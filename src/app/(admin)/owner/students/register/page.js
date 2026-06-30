@@ -16,7 +16,7 @@ export default function RegisterStudent() {
     fatherName: "", fatherOccupation: "Business", fatherPhone: "", fatherAadhaar: "",
     motherName: "", motherPhone: "", motherAadhaar: "", emergencyContact: "",
     feeType: "class", customAnnualFee: 0, hostelStudent: false,
-    academicYear: "2026-27"
+    academicYear: "2026-27", pin: ""
   });
 
   useEffect(() => {
@@ -55,18 +55,38 @@ export default function RegisterStudent() {
     return `SD${String(newNum).padStart(4, '0')}`;
   };
 
+  useEffect(() => {
+    const initPin = async () => {
+      const p = await generatePin();
+      setFormData(prev => ({ ...prev, pin: p }));
+    };
+    initPin();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.pin.trim()) {
+      alert("Please enter a Roll Number / PIN.");
+      return;
+    }
     setSaving(true);
     try {
-      const newPin = await generatePin();
+      // Check for duplicate PIN
+      const pinQuery = query(collection(db, "students"), where("pin", "==", formData.pin.trim()));
+      const pinSnap = await getDocs(pinQuery);
+      if (!pinSnap.empty) {
+        alert("This Roll Number / PIN is already assigned to another student. Please enter a different one.");
+        setSaving(false);
+        return;
+      }
+
       const docRef = await addDoc(collection(db, "students"), {
         ...formData,
-        pin: newPin,
+        pin: formData.pin.trim(),
         isActive: true,
         createdAt: serverTimestamp()
       });
-      setSuccessPin(newPin);
+      setSuccessPin(formData.pin.trim());
     } catch (err) {
       console.error(err);
       alert("Failed to register student.");
@@ -101,6 +121,10 @@ export default function RegisterStudent() {
         <div className="card">
           <h2 className="font-heading" style={{ marginBottom: "16px", color: "var(--navy)", borderBottom: "1px solid var(--border)", paddingBottom: "8px" }}>Student Details</h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <div className="input-group">
+              <label className="input-label">Roll Number / PIN</label>
+              <input type="text" className="input-field" name="pin" value={formData.pin} onChange={handleChange} required style={{ fontWeight: "bold", color: "var(--navy)" }} />
+            </div>
             <div className="input-group">
               <label className="input-label">Full Name</label>
               <input type="text" className="input-field" name="name" value={formData.name} onChange={handleChange} required />
